@@ -1,0 +1,63 @@
+div {
+    padding: 10px;
+}
+
+body>div{
+    border: 3px solid black;
+    background-color: seagreen;
+}
+
+
+/* FIRST DIV */
+
+body > div > div:first-child {
+    
+    background-color: pink;
+    height: 300px;
+    width: 600px;
+}
+
+body > div > div:first-child> div:first-child{
+    border: 2px solid black;
+    background-color: lightblue;
+    width:100px;
+    height: 100px;
+}
+
+body > div > div:first-child >div:nth-child(2){
+    border: 2px solid black;
+    background-color: lightblue;
+    width:100px;
+    height: 100px;
+    position: absolute;
+    left: 90px;
+    top:80px;
+}
+
+
+/* SECOND DIV */
+
+body > div > div:nth-child(2) {
+    background-color: plum;
+    height: 300px;
+    width: 600px;
+}
+
+body > div> div:nth-child(2) > div:first-child {
+    border: 2px solid black;
+    background-color: lightblue;
+    width:100px;
+    height: 100px;
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+body > div>  div:nth-child(2) > div:nth-child(2) {
+    border: 2px solid black;
+    background-color:lightblue;
+    width:100px;
+    height: 100px;
+}
+
+
