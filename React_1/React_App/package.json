@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "parcel": "^2.12.0",
+    "react-dom": "^18.3.1"
+  },
+  "name": "react_app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
