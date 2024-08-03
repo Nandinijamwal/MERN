@@ -1,0 +1,50 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+nav{
+    padding: 10px;
+    background-color: antiquewhite;
+    font-weight: bolder;
+    color: royalblue;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(47, 40, 40);
+    color: lightgrey;
+}
+
+.Prod-add-cont{
+    display: flex;
+    padding: 20px;
+    background-color: antiquewhite;
+    gap:16px;
+
+}
+
+
+.Prod-add{
+    flex-basis: 85%;
+    padding:16px;
+    gap:16px;
+    background-color: white;
+
+    h4{
+        margin:6px;
+    }
+}
+
+.container1-parent{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+}
+
+.products-con>img{
+    width:100%;
+}
