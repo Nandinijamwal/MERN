@@ -88,10 +88,11 @@ const dummy =[
 }
 ];
 
-const Homepge = ()=>{
+const Homepge = (props)=>{
     return(
         <div>
-            <NavBar/>
+            
+            <NavBar text={props.text} handleChange={props.handleChange}/>
             <h1>WORKING</h1>
             <div className="Prod-add-cont">
                 {dummy.map((ele,idx)=>{

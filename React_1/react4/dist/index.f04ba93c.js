@@ -2963,21 +2963,33 @@ var _homepageDefault = parcelHelpers.interopDefault(_homepage);
 var _searchpage = require("./SOURCE/pages/searchpage");
 var _searchpageDefault = parcelHelpers.interopDefault(_searchpage);
 var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
 const App = ()=>{
+    _s();
+    const [text, SetText] = (0, _react.useState)("");
+    const handleChange = (e)=>{
+        SetText(e.target.value);
+    };
     const approuter = (0, _reactRouterDom.createBrowserRouter)([
         {
             path: "/",
-            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homepageDefault.default), {}, void 0, false, {
+            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homepageDefault.default), {
+                text: text,
+                handleChange: handleChange
+            }, void 0, false, {
                 fileName: "NewApp.js",
-                lineNumber: 15,
+                lineNumber: 20,
                 columnNumber: 22
             }, undefined)
         },
         {
             path: "/search",
-            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchpageDefault.default), {}, void 0, false, {
+            element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchpageDefault.default), {
+                text: text,
+                handleChange: handleChange
+            }, void 0, false, {
                 fileName: "NewApp.js",
-                lineNumber: 19,
+                lineNumber: 24,
                 columnNumber: 21
             }, undefined)
         }
@@ -2986,16 +2998,17 @@ const App = ()=>{
         router: approuter
     }, void 0, false, {
         fileName: "NewApp.js",
-        lineNumber: 22,
+        lineNumber: 27,
         columnNumber: 12
     }, undefined);
 };
+_s(App, "8FkvLUYKJ99bZdu9PrKZVwl6Zpo=");
 _c = App;
 const parent = document.getElementById("parent");
 const root = (0, _clientDefault.default).createRoot(parent);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "NewApp.js",
-    lineNumber: 27,
+    lineNumber: 32,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -27517,19 +27530,22 @@ const dummy = [
         ]
     }
 ];
-const Homepge = ()=>{
+const Homepge = (props)=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
+                text: props.text,
+                handleChange: props.handleChange
+            }, void 0, false, {
                 fileName: "SOURCE/pages/homepage.js",
-                lineNumber: 94,
+                lineNumber: 95,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "WORKING"
             }, void 0, false, {
                 fileName: "SOURCE/pages/homepage.js",
-                lineNumber: 95,
+                lineNumber: 96,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27542,13 +27558,13 @@ const Homepge = ()=>{
                         idx: idx
                     }, ele.title, false, {
                         fileName: "SOURCE/pages/homepage.js",
-                        lineNumber: 99,
+                        lineNumber: 100,
                         columnNumber: 28
                     }, undefined);
                 })
             }, void 0, false, {
                 fileName: "SOURCE/pages/homepage.js",
-                lineNumber: 96,
+                lineNumber: 97,
                 columnNumber: 13
             }, undefined)
         ]
@@ -27578,9 +27594,16 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const NavBar = ()=>{
+const NavBar = ({ text, handleChange })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-        children: "NAVBAR!!"
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+            value: text,
+            onChange: handleChange
+        }, void 0, false, {
+            fileName: "SOURCE/components/navbar.js",
+            lineNumber: 2,
+            columnNumber: 17
+        }, undefined)
     }, void 0, false, {
         fileName: "SOURCE/components/navbar.js",
         lineNumber: 2,
@@ -27682,24 +27705,42 @@ var _navbar = require("../components/navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 var _react = require("react");
 var _s = $RefreshSig$();
-const Searchpge = ()=>{
+const Searchpge = (props)=>{
     _s();
-    const [val, SetVal] = (0, _react.useState)("");
-    const handleChange = (e)=>{
-        SetVal(e.target.value);
+    //const [val, SetVal]= useState("OKAY"); 
+    const [data, SetData] = (0, _react.useState)({
+        recipes: []
+    });
+    // const handleChange=(e)=>{
+    //     SetVal(e.target.value);
+    // }
+    const getData = async ()=>{
+        const res = await fetch(`https://dummyjson.com/recipes/search?q=${props.text}`);
+        let temp = await res.json();
+        SetData(temp);
     };
+    // getData();
+    (0, _react.useEffect)(()=>{
+        getData();
+    }, [
+        props.text
+    ]);
+    console.log("ok");
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
+                text: props.text,
+                handleChange: props.handleChange
+            }, void 0, false, {
                 fileName: "SOURCE/pages/searchpage.js",
-                lineNumber: 12,
+                lineNumber: 28,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "SEARCHING"
             }, void 0, false, {
                 fileName: "SOURCE/pages/searchpage.js",
-                lineNumber: 13,
+                lineNumber: 29,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27709,27 +27750,60 @@ const Searchpge = ()=>{
                     margin: "24px auto",
                     padding: "24px"
                 },
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                    onChange: handleChange
-                }, void 0, false, {
-                    fileName: "SOURCE/pages/searchpage.js",
-                    lineNumber: 20,
-                    columnNumber: 21
-                }, undefined)
+                children: data.recipes.map((ele)=>{
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        style: {
+                            width: "100",
+                            backgroundColor: "lightgrey",
+                            margin: "10px auto",
+                            padding: "16px"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                                children: ele.name
+                            }, void 0, false, {
+                                fileName: "SOURCE/pages/searchpage.js",
+                                lineNumber: 46,
+                                columnNumber: 27
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                src: ele.image,
+                                height: "100"
+                            }, void 0, false, {
+                                fileName: "SOURCE/pages/searchpage.js",
+                                lineNumber: 47,
+                                columnNumber: 27
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "Serve: ",
+                                    ele.servings
+                                ]
+                            }, void 0, true, {
+                                fileName: "SOURCE/pages/searchpage.js",
+                                lineNumber: 48,
+                                columnNumber: 27
+                            }, undefined)
+                        ]
+                    }, ele.id, true, {
+                        fileName: "SOURCE/pages/searchpage.js",
+                        lineNumber: 39,
+                        columnNumber: 26
+                    }, undefined);
+                })
             }, void 0, false, {
                 fileName: "SOURCE/pages/searchpage.js",
-                lineNumber: 14,
+                lineNumber: 31,
                 columnNumber: 13
-            }, undefined),
-            val
+            }, undefined)
         ]
     }, void 0, true, {
         fileName: "SOURCE/pages/searchpage.js",
-        lineNumber: 11,
+        lineNumber: 27,
         columnNumber: 9
     }, undefined);
 };
-_s(Searchpge, "9kYdP8BqsnzWKUsLrPSbfRLhXno=");
+_s(Searchpge, "5ggN7YL8m+sB38goV8yGCFDodhA=");
 _c = Searchpge;
 exports.default = Searchpge;
 var _c;
